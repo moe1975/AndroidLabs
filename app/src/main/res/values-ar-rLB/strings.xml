@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">لاب اندرويد</string>
+    <string name="hello_message">البداية</string>
+    <string name="ButtonText">اضغط هنا</string>
+    <string name="title_activity_login">دخول</string>
+    <string name="LoginText">ادخل</string>
+    <string name="PasswordText">كلمة السر</string>
+    <string name="RadioLabel">اختيار</string>
+    <string name="CheckBoxLabel">اختيار</string>
+    <string name="SwitchLabel">افتح</string>
+    <string name="ok">اوكي</string>
+    <string name="cancel">كانسل</string>
+    <string name="dialog_message">رسالة</string>
+    <string name="startChatText">ابدا</string>
+    <string name="sendButtonText">ابعت</string>
+    <string name="startWeatherForecast">الجو</string>
+    <string name="currentTempText">الجو الحالي</string>
+    <string name="minTempText">الدرجةالادنى</string>
+    <string name="maxTempText">الدرجة الاعلى</string>
+</resources>

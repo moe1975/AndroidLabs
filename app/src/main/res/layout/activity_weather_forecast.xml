@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.moe.androidlabs.WeatherForecast">
+
+    <ImageView
+        android:id="@+id/weatherImage"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@mipmap/ic_launcher"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/weatherImage">
+        <TextView
+            android:id="@+id/currentTempLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/currentTempText"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="16dp"
+            android:textSize="18dp"/>
+
+        <TextView
+            android:id="@+id/minTempLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/minTempText"
+            android:layout_below="@+id/currentTempLabel"
+            android:layout_alignStart="@+id/currentTempLabel"
+            android:layout_marginTop="30dp"
+            android:textSize="18dp"/>
+
+        <TextView
+            android:id="@+id/maxTempLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/maxTempText"
+            android:layout_below="@+id/minTempLabel"
+            android:layout_alignStart="@+id/currentTempLabel"
+            android:layout_marginTop="30dp"
+            android:textSize="18dp"/>
+
+        <TextView
+            android:id="@+id/currentTempText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/maxTempText"
+            android:textSize="18dp"/>
+
+        <TextView
+            android:id="@+id/minTempText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:layout_below="@+id/currentTempText"
+            android:layout_alignStart="@+id/maxTempText"
+            android:layout_marginTop="30dp"
+            android:textSize="18dp"/>
+
+        <TextView
+            android:id="@+id/maxTempText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textSize="18dp"
+            android:layout_alignBaseline="@+id/maxTempLabel"
+            android:layout_alignBottom="@+id/maxTempLabel"
+            android:layout_toEndOf="@+id/progressBar"
+            android:layout_marginStart="44dp" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            tools:visibility="invisible"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="89dp"
+            />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>
