@@ -18,4 +18,8 @@
     <string name="currentTempText">الجو الحالي</string>
     <string name="minTempText">الدرجةالادنى</string>
     <string name="maxTempText">الدرجة الاعلى</string>
+    <string name="messageHere">رسالة</string>
+    <string name="idHere">رقم</string>
+    <string name="deleteThisMessage">امسح الرسالة</string>
+
 </resources>

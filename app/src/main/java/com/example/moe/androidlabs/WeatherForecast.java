@@ -4,8 +4,8 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.util.Log;
 import android.util.Xml;
 import android.view.View;
@@ -61,7 +61,7 @@ public class WeatherForecast extends AppCompatActivity {
         private String minTemp;
         private String maxTemp;
         private String iconName;
-        private String iconFileName ="null";
+        private String iconFileName;
         private Bitmap weatherImage;
 
         private static final String OttawaWeatherURL = "http://api.openweathermap.org/data/2.5/weather?q=ottawa,ca&APPID=d99666875e0e51521f0040a3d97d0f6a&mode=xml&units=metric";
@@ -94,7 +94,19 @@ public class WeatherForecast extends AppCompatActivity {
             weatherProgress.setVisibility(View.VISIBLE);
             weatherProgress.setProgress(values[0]);
 
-
+            FileInputStream fis;
+            Log.i("Info", iconFileName);
+            if(fileExists(iconFileName)) {
+                Log.i("Info", iconFileName + " was found");
+                try {
+                    File f = getFileStreamPath(iconFileName);
+                    fis = new FileInputStream(f);
+                    weatherImage = BitmapFactory.decodeStream(fis);
+                }
+                catch (FileNotFoundException e) {
+                    Log.e("Error", "Could not find image " + iconFileName);
+                }
+            }
         }
 
         @Override
@@ -129,40 +141,7 @@ public class WeatherForecast extends AppCompatActivity {
                         minTemp = parser.getAttributeValue(null, "min");
                         maxTemp = parser.getAttributeValue(null, "max");
                     } else if(name.equals("weather")) {
-                        iconFileName = parser.getAttributeValue(null, "icon");
-
-                        FileInputStream fis;
-                        Log.i("Info", iconFileName);
-                        if(fileExists(iconFileName)) {
-                            Log.i("Info", iconFileName + " was found");
-                            try {
-                                File f = getFileStreamPath(iconFileName);
-                                fis = new FileInputStream(f);
-                                weatherImage = BitmapFactory.decodeStream(fis);
-                            }
-                            catch (FileNotFoundException e) {
-                                Log.e("Error", "Could not find image " + iconFileName);
-                            }
-                        }else
-                        {
-                            String imageUrl = "http://openweathermap.org/img/w/" + iconFileName + ".png";
-                            iconFileName = "image" + iconFileName + ".PNG";
-
-                            Bitmap image = HTTPUtils.getImage(imageUrl);
-                            weatherImage = image;
-                            FileOutputStream outputStream;
-                            try {
-                                outputStream = openFileOutput( iconFileName, Context.MODE_PRIVATE);
-                                if(image != null)
-                                    image.compress(Bitmap.CompressFormat.PNG, 80, outputStream);
-
-                                outputStream.flush();
-                                outputStream.close();
-                            } catch (NullPointerException | IOException e) {
-                                e.printStackTrace();
-                            }
-
-                        }
+                        iconName = parser.getAttributeValue(null, "icon");
                     }
 
                     progress += 1;
@@ -175,7 +154,21 @@ public class WeatherForecast extends AppCompatActivity {
 
             publishProgress(100);
 
+            String imageUrl = "http://openweathermap.org/img/w/" + iconName + ".png";
+            iconFileName = "image" + iconName + ".PNG";
 
+            Bitmap image = HTTPUtils.getImage(imageUrl);
+            FileOutputStream outputStream;
+            try {
+                outputStream = openFileOutput( iconFileName, Context.MODE_PRIVATE);
+                if(image != null)
+                    image.compress(Bitmap.CompressFormat.PNG, 80, outputStream);
+
+                outputStream.flush();
+                outputStream.close();
+            } catch (NullPointerException | IOException e) {
+                e.printStackTrace();
+            }
 
             return null;
         }

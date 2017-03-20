@@ -18,5 +18,7 @@
     <string name="currentTempText">Current Temperature</string>
     <string name="minTempText">Minimum Temperature</string>
     <string name="maxTempText">Maximum Temperature</string>
-    <string name="appbar_scrolling_view_behavior">bar</string>
+    <string name="messageHere">MessageHere</string>
+    <string name="idHere">ID=</string>
+    <string name="deleteThisMessage">DELETE THIS MESSAGE</string>
 </resources>
